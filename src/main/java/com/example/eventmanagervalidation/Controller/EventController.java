@@ -19,9 +19,8 @@ public class EventController {
     //BASIC CRUD ENDPOINTS
     @PostMapping("/add")
     public ResponseEntity<?> addEvent(@RequestBody @Valid Event newEvent, Errors errors){
-        if(errors.hasErrors()){
-            return ResponseEntity.status(400).body(errors.getFieldError().getDefaultMessage());
-        }
+        if(errors.hasErrors())
+            return ResponseEntity.status(400).body(new ApiResponse(errors.getFieldError().getDefaultMessage()));
 
         //check id
         for(Event e: events){
@@ -46,7 +45,7 @@ public class EventController {
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateEvent(@PathVariable String id, @RequestBody @Valid Event newEvent, Errors errors){
         if(errors.hasErrors())
-            return ResponseEntity.status(400).body(errors.getFieldError().getDefaultMessage());
+            return ResponseEntity.status(400).body(new ApiResponse(errors.getFieldError().getDefaultMessage()));
 
         //check dates
         if(newEvent.getStartDate().isAfter(newEvent.getEndDate())){
@@ -100,5 +99,5 @@ public class EventController {
         }
         return ResponseEntity.status(404).body(new ApiResponse("There is no event with ID: " + id));
     }
-    
+
 }
