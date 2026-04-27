@@ -100,7 +100,5 @@ public class EventController {
         }
         return ResponseEntity.status(404).body(new ApiResponse("There is no event with ID: " + id));
     }
-
-
-
+    
 }

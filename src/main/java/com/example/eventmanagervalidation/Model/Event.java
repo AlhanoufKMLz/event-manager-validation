@@ -9,11 +9,11 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 public class Event {
-    @NotBlank(message = "ID cannot be null")
+    @NotBlank(message = "ID cannot be blank")
     @Size(min = 2, message = "ID must be at least 2 letters.")
     private String id;
 
-    @NotBlank(message = "Description cannot be null")
+    @NotBlank(message = "Description cannot be blank")
     @Size(min = 15, message = "Description must be at least 15 letters.")
     private String description;
 
@@ -21,11 +21,11 @@ public class Event {
     private int capacity;
 
 
-    @NotNull(message = "Start date cannot be null")
+    @NotNull(message = "Start date cannot be blank")
     @FutureOrPresent(message = "Start date must be today or in the future")
     private LocalDate startDate;
 
-    @NotNull(message = "End date cannot be null")
+    @NotNull(message = "End date cannot be blank")
     @Future(message = "End date must be in the future")
     private LocalDate endDate;
 
