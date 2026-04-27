@@ -55,11 +55,12 @@ public class EventController {
 
         for(int i=0; i < events.size(); i++){
             if(events.get(i).getId().equalsIgnoreCase(id)){
+                newEvent.setId(events.get(i).getId());//make sure the user doesn't change the id
                 events.set(i, newEvent);
                 return ResponseEntity.status(200).body(new ApiResponse("Event updated successfully."));
             }
         }
-        return ResponseEntity.status(400).body(new ApiResponse("Event with ID: " + id + " not found."));
+        return ResponseEntity.status(404).body(new ApiResponse("Event with ID: " + id + " not found."));
     }
 
     @DeleteMapping("/delete/{id}")
@@ -70,7 +71,7 @@ public class EventController {
                 return ResponseEntity.status(200).body(new ApiResponse("Event deleted successfully"));
             }
         }
-        return ResponseEntity.status(400).body(new ApiResponse("Event with ID: " + id + " not found."));
+        return ResponseEntity.status(404).body(new ApiResponse("Event with ID: " + id + " not found."));
     }
 
 
@@ -87,7 +88,7 @@ public class EventController {
                 return ResponseEntity.status(200).body(new ApiResponse("Event capacity updated successfully."));
             }
         }
-        return ResponseEntity.status(400).body(new ApiResponse("Event with ID: " + id + " not found."));
+        return ResponseEntity.status(404).body(new ApiResponse("Event with ID: " + id + " not found."));
     }
 
     @GetMapping("/get-id/{id}")
@@ -97,7 +98,7 @@ public class EventController {
                 return ResponseEntity.status(200).body(event);
             }
         }
-        return ResponseEntity.status(400).body(new ApiResponse("There is no event with ID: " + id));
+        return ResponseEntity.status(404).body(new ApiResponse("There is no event with ID: " + id));
     }
 
 
